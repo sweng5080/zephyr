@@ -605,6 +605,9 @@ class Walker:
             if depAbspath == "":
                 continue
 
+            if pkg.targetBuildFile is None:
+                log.wrn(f'skipping STATIC_LINK for empty {pkg.cfg.name} target build file')
+                continue
             # create relationship data between build files
             rd = RelationshipData()
             rd.ownerType = RelationshipDataElementType.FILENAME
